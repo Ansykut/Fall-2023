@@ -1,5 +1,5 @@
 <p align="center">
-CPS493 Fall 2023 <br>
+<b>CPS493 Fall 2023</b> <br>
   <img src="https://github.com/Ansykut/Fall-2023/assets/101211415/88b79fb6-9c2a-4189-8b1e-f83e3a2f100c" alt="Selfie" />
 </p>
 

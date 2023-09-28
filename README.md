@@ -16,5 +16,7 @@ I'm drawn to learning web programming, especially CSS and HTML, because it's it 
 ## What is MVC?
 - MVC is a software design pattern commonly used for developing user interfaces that divides the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user. The MVC design pattern decouples these major components allowing for efficient code reuse and parallel development.
 
-# How to start a node project
+## How to start a node project
 - Run `npm init` and follow the prompts
+## How to install express
+- Run `npm install express`

@@ -1,14 +1,15 @@
-// simple Http Server
+// express server
+const express = require('express');
 
-const http = require('http');
 
-const PORT = 3000;
+// create express app
+const app = express();
+const PORT= process.env.PORT || 50120;
 
-const server = http.createServer((req, res) => {
-    res.end('Hello World!\n');
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
-server.listen(PORT, () => {
-    console.log(`Server is listening on port http://localhost:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
 });
-

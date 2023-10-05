@@ -1,27 +1,39 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue';
 </script>
 
 <template>
   <header>
-    <span class="fas fa-bars"></span>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+<Navbar />
+    
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <div class="container">
+     
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+
+      <RouterView />
     </div>
   </header>
 
-  <RouterView />
+ 
 </template>
 
 <style scoped>
+body {
+  background-color: aliceblue;
+}
+
+.container{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-color: white;
+  padding: 5px;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;

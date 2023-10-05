@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue';
 </script>
 
@@ -9,13 +9,6 @@ import Navbar from './components/Navbar.vue';
     
 
     <div class="container">
-     
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-
       <RouterView />
     </div>
   </header>
@@ -31,7 +24,7 @@ body {
 .container{
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   background-color: white;
-  padding: 5px;
+  padding: 25px;
 }
 
 header {

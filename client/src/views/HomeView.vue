@@ -1,74 +1,61 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-//import confetti from 'canvas-confetti'; // Import the canvas-confetti library
 
-const newTask = ref('');
-const tasks = ref<{ task: string; completed: boolean }[]>([]);
+  const newTask = ref('');
+  const tasks = ref([] as { id?: number, text: string, completed: boolean }[] );
 
-function addTask() {
-  tasks.value.push({ task: newTask.value, completed: false });
-  newTask.value = '';
-}
+  const tabList = ['Current', 'Completed', 'All'];
+  const tabState = ref('Current');
 
-function removeCompletedTasks() {
-  // Create a confetti explosion effect
-  const duration = 5000; // Duration of the confetti explosion (in milliseconds)
-  const { clientWidth, clientHeight } = document.documentElement;
+  function addTask() {
+    tasks.value.push({ text: newTask.value, completed: false });
+    newTask.value = '';
+  };
 
-  /*confetti({
-    particleCount: 100, // Number of confetti particles
-    spread: 160, // Spread of the confetti particles
-    origin: { y: 0.6 }, // Start from the top
-    colors: ['#FFD700', '#FFA07A', '#00FF00'], // Color options
-  });
-  */
-  // Remove completed tasks from the array
-  tasks.value = tasks.value.filter((task) => !task.completed);
-}
+  const shouldDisplay = (task: { id?: number, text: string, completed: boolean }) =>
+    (tabState.value == 'Current' && !task.completed) ||
+    (tabState.value == 'Completed' && task.completed) ||
+    tabState.value == 'All';
+
+
 </script>
 
 <template>
-  <main>
-    <h1>Home</h1>
-    <nav class="columns"></nav>
-    <div class="columns is-centered">
-      <div class="column is-4-desktop is-6-tablet is-12-mobile">
-        <nav class="panel">
-          <p class="panel-heading">
-            To-Do
-          </p>
-          <div class="panel-block">
-            <p class="control has-icons-left">
-              <input
-                class="input"
-                type="text"
-                placeholder="What do you want to do?"
-                @keypress.enter="addTask"
-                v-model="newTask"
-              />
-              <span class="icon is-left">
-                <i class="fas fa-plus" aria-hidden="true"></i>
-              </span>
-            </p>
-          </div>
+  <main class="columns is-multiline is-centered">
+    <div class="column is-full">
+      <h1 class="title" >Home</h1>
+      <h2 class="subtitle">
+        Welcome to your Vue.js + TypeScript app
+      </h2>
+    </div>
 
-          <label class="panel-block" v-for="(task, index) in tasks" :key="index">
-            <input type="checkbox" v-model="task.completed" />
-            <span :class="{ 'completed-task': task.completed }">{{ task.task }}</span>
-          </label>
-          <div class="panel-block">
-            <button class="button is-link is-outlined is-fullwidth" @click="removeCompletedTasks">
-              Remove completed tasks
-            </button>
-          </div>
-        </nav>
+    <div class="column is-half-desktop is-centered">
+      <div class="panel is-primary">
+        <p class="panel-heading">
+          To Do
+        </p>
+        <div class="panel-block">
+          <p class="control has-icons-left">
+            <input  class="input" type="text" placeholder="What do you want to do"
+                    @keypress.enter="addTask" v-model="newTask" >
+            <span class="icon is-left">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        <p class="panel-tabs">
+          <a v-for="tab in tabList" :class="{ 'is-active': tabState == tab}" @click.prevent="tabState = tab">{{ tab }}</a>
+        </p>
+        <label class="panel-block" v-for="task in tasks" v-show="shouldDisplay(task)">
+          <input type="checkbox" v-model="task.completed">
+          {{ task.text }}
+        </label>
+        <div class="panel-block">
+          <button class="button is-link is-outlined is-fullwidth">
+            Reset all filters
+          </button>
+        </div>
       </div>
     </div>
   </main>
 </template>
-
-<style scoped>
-.completed-task {
-  text-decoration: line-through;
-}
-</style>

@@ -1,15 +1,18 @@
-// express server
+// express.js
+
 const express = require('express');
-
-
-// create express app
 const app = express();
-const PORT= process.env.PORT || 3000;
+
+const PORT = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
 });
 
+console.log('1: Trying to start server...');
+
 app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
+    console.log(`2: Server is running at http://localhost:${PORT}`);
 });
+
+console.log('3: End of file, waiting for requests...');

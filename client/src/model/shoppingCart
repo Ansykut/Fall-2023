@@ -1,0 +1,8 @@
+import (type Product) from '@/model/products';
+
+export type ShoppingCart = {   
+    products: Product[],
+    total: number
+};
+
+export const cart: ShoppingCart = reactive([] at ShoppingCart[]);
